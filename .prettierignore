@@ -1,0 +1,11 @@
+
+# Dependencies
+**/node_modules/
+.pnpm-store/
+
+# Package builds
+**/dist/
+**/build/
+
+# Lockfile
+pnpm-lock.yaml

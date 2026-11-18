@@ -1,0 +1,16 @@
+{
+    "name": "@arenasesteban/ui",
+    "version": "0.0.0",
+    "description": "Tailwind CSS Component Library & Design System",
+    "private": true,
+    "type": "commonjs",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc --project tsconfig.json",
+        "typecheck": "tsc --project tsconfig.json --noEmit"
+    }
+}

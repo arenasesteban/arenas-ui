@@ -1,0 +1,25 @@
+{
+    "name": "arenas-ui-workspace",
+    "version": "0.0.0",
+    "private": true,
+    "packageManager": "pnpm@12.20.0",
+    "engines": {
+        "node": ">=26.13.1 <27",
+        "pnpm": "12.20.0"
+    },
+    "scripts": {
+        "build": "pnpm --filter @arenasesteban/ui build",
+        "typecheck": "pnpm --filter @arenasesteban/ui typecheck",
+        "lint": "eslint . --max-warnings 0",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "check": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run build"
+    },
+    "devDependencies": {
+        "@eslint/js": "10.0.1",
+        "eslint": "10.15.0",
+        "prettier": "3.10.1",
+        "typescript": "6.0.2",
+        "typescript-eslint": "8.73.0"
+    }
+}
