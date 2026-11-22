@@ -1,0 +1,27 @@
+{
+    "name": "@arenasesteban/playground",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "engines": {
+        "node": ">=22.23.4"
+    },
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "check": "astro check",
+        "test:plugin": "tailwindcss -i ./tests/plugin.css -o ./tests/plugin.generated.css && node --test ./tests/plugin.test.mjs"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.3.5",
+        "astro": "^7.4.13",
+        "tailwindcss": "^4.3.5"
+    },
+    "devDependencies": {
+        "@arenasesteban/ui": "workspace:*",
+        "@astrojs/check": "^0.9.12",
+        "@tailwindcss/cli": "^4.3.5",
+        "typescript": "^6.0.3"
+    }
+}

@@ -1,6 +1,10 @@
-/**
- * Arenas UI package entrypoint.
- *
- * The Tailwind CSS v4 plugin will be implemented in Issue #2.
- */
-export {};
+import plugin from 'tailwindcss/plugin';
+
+export default plugin(({ addComponents }) => {
+    addComponents({
+        '.aui-plugin-check': {
+            outline: '2px dashed currentColor',
+            outlineOffset: '4px',
+        },
+    });
+});
