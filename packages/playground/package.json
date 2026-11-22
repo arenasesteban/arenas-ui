@@ -11,7 +11,8 @@
         "build": "astro build",
         "preview": "astro preview",
         "check": "astro check",
-        "test:plugin": "tailwindcss -i ./tests/plugin.css -o ./tests/plugin.generated.css && node --test ./tests/plugin.test.mjs"
+        "test:plugin": "tailwindcss -i ./tests/plugin.css -o ./tests/plugin.generated.css && node --test ./tests/plugin.test.ts",
+        "test:themes": "tailwindcss -i ./tests/plugin.css -o ./tests/plugin.generated.css && playwright test"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.3.5",
@@ -21,6 +22,7 @@
     "devDependencies": {
         "@arenasesteban/ui": "workspace:*",
         "@astrojs/check": "^0.9.12",
+        "@playwright/test": "^1.65.1",
         "@tailwindcss/cli": "^4.3.5",
         "typescript": "^6.0.3"
     }

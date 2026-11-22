@@ -15,7 +15,8 @@
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "test:plugin": "pnpm --filter @arenasesteban/playground test:plugin",
-        "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build && pnpm test:plugin"
+        "test:themes": "pnpm --filter @arenasesteban/playground test:themes",
+        "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build && pnpm test:plugin && pnpm test:themes"
     },
     "devDependencies": {
         "@eslint/js": "10.0.1",

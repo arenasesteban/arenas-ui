@@ -42,3 +42,9 @@ jobs:
 
             - name: Test Tailwind plugin
               run: pnpm test:plugin
+            
+            - name: Install Chromium
+              run: pnpm --filter @arenasesteban/playground exec playwright install --with-deps chromium
+
+            - name: Test themes
+              run: pnpm test:themes

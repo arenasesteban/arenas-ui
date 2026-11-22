@@ -21,3 +21,7 @@ Thumbs.db
 
 # Generated plugin test output
 packages/playground/tests/plugin.generated.css
+
+# Playwright test output
+playwright-report/
+test-results/

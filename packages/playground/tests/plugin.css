@@ -1,3 +1,16 @@
 @import 'tailwindcss' source(none);
 @plugin '@arenasesteban/ui';
-@source inline('aui-plugin-check font-bold');
+
+@source inline('aui-plugin-check font-bold bg-blue-500');
+
+@layer components {
+    .aui-token-probe {
+        background-color: var(--aui-color-primary);
+        color: var(--aui-color-primary-content);
+        outline-color: var(--aui-color-focus);
+    }
+}
+
+#custom-brand {
+    --aui-color-primary: #123456;
+}
