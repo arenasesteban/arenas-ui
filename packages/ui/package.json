@@ -1,0 +1,10 @@
+{
+    "name": "@arenasesteban/ui",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "tsc --project tsconfig.json",
+        "typecheck": "tsc --noEmit --project tsconfig.json"
+    }
+}
