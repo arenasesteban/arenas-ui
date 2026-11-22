@@ -1,0 +1,14 @@
+# Dependencies
+**/node_modules/
+
+# Package builds
+**/dist/
+
+# Lockfile
+pnpm-lock.yaml
+
+# Astro generated metadata
+.astro/
+
+# Generated plugin test output
+packages/playground/tests/plugin.generated.css
