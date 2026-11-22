@@ -1,0 +1,44 @@
+name: CI
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: read
+
+jobs:
+    quality:
+        name: Quality
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v7
+              with:
+                  persist-credentials: false
+
+            - name: Setup pnpm and Node.js
+              uses: pnpm/setup@v3
+              with:
+                  runtime: node@26.13.1
+                  cache: true
+                  require-lockfile: true
+
+            - name: Check formatting
+              run: pnpm format:check
+
+            - name: Lint
+              run: pnpm lint
+
+            - name: Typecheck
+              run: pnpm typecheck
+
+            - name: Build
+              run: pnpm build
+
+            - name: Test Tailwind plugin
+              run: pnpm test:plugin
