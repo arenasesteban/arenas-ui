@@ -2,10 +2,10 @@
  * Shared dimensions and motion for Arenas UI controls.
  */
 export const sharedTokens = {
-    '--aui-radius-control': '0.375rem',
+    '--aui-radius-control': '0.625rem',
     '--aui-radius-surface': '0.75rem',
     '--aui-control-height': '2.25rem',
-    '--aui-control-padding-inline': '1rem',
+    '--aui-control-padding-inline': '1.25rem',
 
     '--aui-motion-duration-control': '220ms',
     '--aui-motion-easing-control': 'cubic-bezier(0.2, 0.7, 0.2, 1)',
@@ -21,9 +21,9 @@ export const lightTokens = {
     '--aui-color-primary-emphasis': '#18181B',
 
     // Secondary
-    '--aui-color-secondary': '#FFFFFF',
-    '--aui-color-secondary-content': '#18181B',
-    '--aui-color-secondary-emphasis': '#18181B',
+    '--aui-color-secondary': '#F4F4F5',
+    '--aui-color-secondary-content': '#3F3F46',
+    '--aui-color-secondary-emphasis': '#52525B',
 
     // Success
     '--aui-color-success': '#047857',
@@ -39,6 +39,12 @@ export const lightTokens = {
     '--aui-color-error': '#DC2626',
     '--aui-color-error-content': '#FFFFFF',
     '--aui-color-error-emphasis': '#DC2626',
+
+    // Disabled
+    '--aui-color-disabled-surface': '#E4E4E7',
+    '--aui-color-disabled-smooth': '#F4F4F5',
+    '--aui-color-disabled-content': '#71717A',
+    '--aui-color-disabled-border': '#D4D4D8',
 
     // Surfaces and accessibility
     '--aui-color-surface': '#FFFFFF',
@@ -57,9 +63,9 @@ export const darkTokens = {
     '--aui-color-primary-emphasis': '#FFFFFF',
 
     // Secondary
-    '--aui-color-secondary': '#18181B',
-    '--aui-color-secondary-content': '#FFFFFF',
-    '--aui-color-secondary-emphasis': '#FFFFFF',
+    '--aui-color-secondary': '#27272A',
+    '--aui-color-secondary-content': '#F4F4F5',
+    '--aui-color-secondary-emphasis': '#A1A1AA',
 
     // Success
     '--aui-color-success': '#047857',
@@ -75,6 +81,12 @@ export const darkTokens = {
     '--aui-color-error': '#DC2626',
     '--aui-color-error-content': '#FFFFFF',
     '--aui-color-error-emphasis': '#F87171',
+
+    // Disabled
+    '--aui-color-disabled-surface': '#3F3F46',
+    '--aui-color-disabled-smooth': '#27272A',
+    '--aui-color-disabled-content': '#A1A1AA',
+    '--aui-color-disabled-border': '#52525B',
 
     // Surfaces and accessibility
     '--aui-color-surface': '#09090B',

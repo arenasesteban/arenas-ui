@@ -18,6 +18,7 @@
         "test:browser": "pnpm test:compile && playwright test"
     },
     "dependencies": {
+        "@tabler/icons-astro": "^3.52.0",
         "@tailwindcss/vite": "^4.3.5",
         "astro": "^7.4.13",
         "tailwindcss": "^4.3.5"

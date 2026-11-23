@@ -1,7 +1,7 @@
 @import 'tailwindcss' source(none);
 @plugin '@arenasesteban/ui';
 
-@source inline('aui-plugin-check font-bold bg-blue-500 bg-blue-800 text-white px-8 rounded-none btn btn-outline btn-ghost btn-secondary btn-success btn-warning btn-error btn-sm btn-md btn-lg btn-pill btn-square btn-circle btn-block btn-loading');
+@source inline('aui-plugin-check font-bold bg-blue-500 bg-blue-800 text-white px-8 rounded-none btn btn-outline btn-ghost btn-secondary btn-success btn-warning btn-error btn-sm btn-md btn-lg btn-pill btn-square btn-circle btn-block btn-smooth loading loading-spinner');
 
 /* Internal test fixture, not part of the public library. */
 @layer components {

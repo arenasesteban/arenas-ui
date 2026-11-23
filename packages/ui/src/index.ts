@@ -1,12 +1,13 @@
 import plugin from 'tailwindcss/plugin';
 
-import { buttonKeyframes, buttonStyles } from './components/button/index.js';
+import { buttonStyles } from './components/button/index.js';
+import { loadingKeyframes, loadingStyles } from './components/loading/index.js';
 
 import { themeStyles } from './styles/themes.js';
 
 export default plugin(({ addBase, addComponents }) => {
     addBase(themeStyles);
-    addBase(buttonKeyframes);
+    addBase(loadingKeyframes);
 
     addComponents({
         '.aui-plugin-check': {
@@ -16,4 +17,5 @@ export default plugin(({ addBase, addComponents }) => {
     });
 
     addComponents(buttonStyles);
+    addComponents(loadingStyles);
 });

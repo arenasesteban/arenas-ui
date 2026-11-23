@@ -196,6 +196,9 @@ importers:
 
   packages/playground:
     dependencies:
+      '@tabler/icons-astro':
+        specifier: ^3.52.0
+        version: 3.52.0(astro@7.4.13(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
       '@tailwindcss/vite':
         specifier: ^4.3.5
         version: 4.3.5(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
@@ -1112,6 +1115,14 @@ packages:
 
   '@shikijs/vscode-textmate@10.1.0':
     resolution: {integrity: sha512-cVBuhDQjBZaNMTwBquYfPydrUP+E3hE6oYGasx8h6ZrODIM7/r+gxLDXdd66oszbrggZHEntdE6j+5gYIVyMWQ==}
+
+  '@tabler/icons-astro@3.52.0':
+    resolution: {integrity: sha512-sIqcH8JJpx8+Z+DSq26z2aB4xj69t94Ftqh3UdKOQw4zhshV2sWINIlJ37GHrGRtjnFO7kqEB3WXBmkpVY2h1g==}
+    peerDependencies:
+      astro: '>=4.0.0'
+
+  '@tabler/icons@3.52.0':
+    resolution: {integrity: sha512-dldKlJNfO/gZnGLcIY0X2EFFKIMGwL/rEvTqglvBgAPFiwj9pZOCN5V3Sf0Gyjq6foX4VQmLdOmsS4w5FdWKAw==}
 
   '@tailwindcss/cli@4.3.5':
     resolution: {integrity: sha512-+evrrLZEgNPDXgdIxD6Zfc23WhSYZQeGwniO5u9M4zC92kbEtIjKd8l2QWeO7du8kl4gF8z7YArnUGHG4y2Jzg==}
@@ -3307,6 +3318,13 @@ snapshots:
       '@types/hast': 3.0.5
 
   '@shikijs/vscode-textmate@10.1.0': {}
+
+  '@tabler/icons-astro@3.52.0(astro@7.4.13(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
+    dependencies:
+      '@tabler/icons': 3.52.0
+      astro: 7.4.13(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1)
+
+  '@tabler/icons@3.52.0': {}
 
   '@tailwindcss/cli@4.3.5':
     dependencies:

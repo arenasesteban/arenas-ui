@@ -1,9 +1,33 @@
 ---
+import {
+    IconAlertTriangle,
+    IconCheck,
+    IconMenu2,
+    IconPlus,
+    IconTrash,
+    IconX,
+} from '@tabler/icons-astro';
+
 import '../styles/global.css';
 
 const themes = [
     { id: 'light', title: 'Light theme' },
     { id: 'dark', title: 'Dark theme' },
+] as const;
+
+const roles = [
+    { label: 'Primary', className: '' },
+    { label: 'Secondary', className: 'btn-secondary' },
+    { label: 'Success', className: 'btn-success' },
+    { label: 'Warning', className: 'btn-warning' },
+    { label: 'Error', className: 'btn-error' },
+] as const;
+
+const variants = [
+    { label: 'Default', className: '' },
+    { label: 'Outline', className: 'btn-outline' },
+    { label: 'Ghost', className: 'btn-ghost' },
+    { label: 'Smooth', className: 'btn-smooth' },
 ] as const;
 
 const sizes = [
@@ -12,97 +36,19 @@ const sizes = [
     { label: 'Large', className: 'btn btn-lg' },
 ] as const;
 
-const variantGroups = [
-    {
-        title: 'Semantic colors',
-        buttons: [
-            { label: 'Primary', className: 'btn' },
-            { label: 'Secondary', className: 'btn btn-secondary' },
-            { label: 'Success', className: 'btn btn-success' },
-            { label: 'Warning', className: 'btn btn-warning' },
-            { label: 'Error', className: 'btn btn-error' },
-        ],
-    },
-    {
-        title: 'Presentation',
-        buttons: [
-            { label: 'Solid', className: 'btn' },
-            { label: 'Outline', className: 'btn btn-outline' },
-            { label: 'Ghost', className: 'btn btn-ghost' },
-            {
-                label: 'Success outline',
-                className: 'btn btn-success btn-outline',
-            },
-            {
-                label: 'Error ghost',
-                className: 'btn btn-error btn-ghost',
-            },
-        ],
-    },
-    {
-        title: 'Sizes',
-        buttons: sizes,
-    },
-] as const;
-
-const stateButtons = [
-    {
-        label: 'Disabled',
-        className: 'btn',
-        disabled: true,
-        busy: false,
-    },
-    {
-        label: 'Loading visual',
-        className: 'btn btn-loading',
-        disabled: false,
-        busy: false,
-    },
-    {
-        label: 'Loading managed',
-        className: 'btn btn-loading',
-        disabled: true,
-        busy: true,
-    },
+const stateRoles = [
+    { label: 'Primary', className: '' },
+    { label: 'Success', className: 'btn-success' },
 ] as const;
 
 const radiusExamples = [
-    { label: 'Default · 6 px', value: undefined },
+    { label: 'Default · 10 px', value: undefined },
     { label: 'Override · 8 px', value: '0.5rem' },
 ] as const;
 
 const fontExamples = [
     { label: 'System UI', family: 'system-ui, sans-serif' },
     { label: 'Arial', family: 'Arial, sans-serif' },
-] as const;
-
-const scenarios = [
-    {
-        title: 'Action hierarchy',
-        heading: '¿Guardar los cambios?',
-        description: 'Revisa la relación visual entre la acción principal y la secundaria.',
-        actions: [
-            { label: 'Cancelar', className: 'btn btn-secondary' },
-            { label: 'Guardar cambios', className: 'btn' },
-        ],
-    },
-    {
-        title: 'Semantic actions',
-        heading: 'Gestión de elementos',
-        description:
-            'Compara la jerarquía de las acciones generales, de confirmación y de eliminación.',
-        actions: [
-            { label: 'Editar', className: 'btn' },
-            {
-                label: 'Confirmar',
-                className: 'btn btn-success btn-outline',
-            },
-            {
-                label: 'Eliminar',
-                className: 'btn btn-error btn-ghost',
-            },
-        ],
-    },
 ] as const;
 ---
 
@@ -116,7 +62,8 @@ const scenarios = [
     <body>
         <main class="review">
             <header class="review-header">
-                <h1>Arenas UI — Button</h1>
+                <h1>Arenas UI — Button Review</h1>
+                <p>Revisión visual · Jerarquía, geometría y estados</p>
             </header>
 
             <div class="themes">
@@ -124,28 +71,59 @@ const scenarios = [
                     <section class="theme" data-theme={theme.id}>
                         <h2>{theme.title}</h2>
 
-                        {/* Public variants */}
-                        {variantGroups.map((group) => (
-                            <section class="review-section">
-                                <h3>{group.title}</h3>
+                        <!-- Variants and semantic roles -->
+                        <section class="review-section">
+                            <h3>Variants and semantic colors</h3>
 
-                                <div class="samples">
-                                    {group.buttons.map((button) => (
-                                        <button type="button" class={button.className}>
-                                            {button.label}
-                                        </button>
-                                    ))}
-                                </div>
-                            </section>
-                        ))}
+                            <p class="description">
+                                Cuatro presentaciones con cinco roles de color. Primary y Secondary
+                                tienen jerarquías distintas.
+                            </p>
 
-                        {/* Shapes */}
+                            <div class="variant-matrix">
+                                {roles.map((role) => (
+                                    <div class="variant-group">
+                                        <h4>{role.label}</h4>
+
+                                        <div class="variant-buttons">
+                                            {variants.map((variant) => (
+                                                <button
+                                                    type="button"
+                                                    class={`btn ${role.className} ${variant.className}`.trim()}
+                                                >
+                                                    {variant.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        <!-- Sizes -->
+                        <section class="review-section">
+                            <h3>Sizes</h3>
+
+                            <div class="samples">
+                                {sizes.map((size) => (
+                                    <button type="button" class={size.className}>
+                                        {size.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </section>
+
+                        <!-- Shapes -->
                         <section class="review-section">
                             <h3>Shapes</h3>
 
                             <div class="samples">
+                                <button type="button" class="btn">
+                                    Regular
+                                </button>
+
                                 <button type="button" class="btn btn-pill">
-                                    Pill
+                                    Rounded
                                 </button>
 
                                 <button
@@ -153,63 +131,132 @@ const scenarios = [
                                     class="btn btn-square"
                                     aria-label="Abrir menú"
                                 >
-                                    <span aria-hidden="true">☰</span>
+                                    <IconMenu2 size={18} stroke={1.8} aria-hidden="true" />
                                 </button>
 
                                 <button type="button" class="btn btn-circle" aria-label="Cerrar">
-                                    <span aria-hidden="true">×</span>
+                                    <IconX size={18} stroke={1.8} aria-hidden="true" />
                                 </button>
                             </div>
                         </section>
 
-                        {/* Native and visual states */}
+                        <!-- Disabled and processing -->
                         <section class="review-section">
                             <h3>States</h3>
 
-                            <div class="samples">
-                                {stateButtons.map((button) => (
-                                    <button
-                                        type="button"
-                                        class={button.className}
-                                        disabled={button.disabled}
-                                        aria-busy={button.busy ? 'true' : undefined}
-                                    >
-                                        {button.label}
-                                    </button>
-                                ))}
-                            </div>
+                            <p class="description">
+                                Disabled utiliza colores neutrales. Processing conserva la
+                                apariencia de la variante, incluso con disabled.
+                            </p>
+
+                            {stateRoles.map((role) => (
+                                <div class="state-group">
+                                    <h4>{role.label}</h4>
+
+                                    {variants.map((variant) => {
+                                        const buttonClass =
+                                            `btn ${role.className} ${variant.className}`.trim();
+
+                                        return (
+                                            <div class="state-row">
+                                                <span class="state-name">{variant.label}</span>
+
+                                                <div class="state-item">
+                                                    <span>Enabled</span>
+                                                    <button type="button" class={buttonClass}>
+                                                        Action
+                                                    </button>
+                                                </div>
+
+                                                <div class="state-item">
+                                                    <span>Disabled</span>
+                                                    <button
+                                                        type="button"
+                                                        class={buttonClass}
+                                                        disabled
+                                                    >
+                                                        Action
+                                                    </button>
+                                                </div>
+
+                                                <div class="state-item">
+                                                    <span>Processing</span>
+                                                    <button
+                                                        type="button"
+                                                        class={buttonClass}
+                                                        disabled
+                                                        aria-busy="true"
+                                                    >
+                                                        <span
+                                                            class="loading loading-spinner"
+                                                            aria-hidden="true"
+                                                        ></span>
+                                                        Processing
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            ))}
                         </section>
 
-                        {/* Tailwind interoperability */}
+                        <!-- Loading -->
                         <section class="review-section">
-                            <h3>Customization and layout</h3>
+                            <h3>Loading indicator</h3>
 
                             <div class="samples">
+                                <span
+                                    class="loading loading-spinner"
+                                    role="status"
+                                    aria-label="Cargando"
+                                ></span>
+
                                 <button
                                     type="button"
-                                    class="btn bg-blue-800 text-white px-8 rounded-none"
+                                    class="btn btn-outline"
+                                    disabled
+                                    aria-busy="true"
                                 >
-                                    Utility override
-                                </button>
-
-                                <a href="#destination" class="btn btn-outline">
-                                    Styled link
-                                </a>
-                            </div>
-
-                            <div class="block-example">
-                                <button type="button" class="btn btn-block">
-                                    Block button
+                                    <span class="loading loading-spinner" aria-hidden="true"></span>
+                                    Procesando...
                                 </button>
                             </div>
                         </section>
 
-                        {/* Public radius token */}
+                        <!-- Tabler icons -->
                         <section class="review-section">
-                            <h3>Geometry and customization</h3>
+                            <h3>Buttons with icons</h3>
+
+                            <div class="samples">
+                                <button type="button" class="btn btn-success">
+                                    <IconCheck size={18} stroke={1.8} aria-hidden="true" />
+                                    Confirmar
+                                </button>
+
+                                <button type="button" class="btn btn-warning btn-smooth">
+                                    <IconAlertTriangle size={18} stroke={1.8} aria-hidden="true" />
+                                    Advertencia
+                                </button>
+
+                                <button type="button" class="btn btn-error btn-outline">
+                                    <IconTrash size={18} stroke={1.8} aria-hidden="true" />
+                                    Eliminar
+                                </button>
+
+                                <button type="button" class="btn btn-pill">
+                                    <IconPlus size={18} stroke={1.8} aria-hidden="true" />
+                                    Agregar
+                                </button>
+                            </div>
+                        </section>
+
+                        <!-- Geometry -->
+                        <section class="review-section">
+                            <h3>Geometry</h3>
 
                             <p class="description">
-                                Radio predeterminado de 6 px y ejemplo de personalización a 8 px.
+                                Radio regular de 10 px y ejemplo de personalización mediante token.
                             </p>
 
                             <div class="comparison">
@@ -237,13 +284,9 @@ const scenarios = [
                             </div>
                         </section>
 
-                        {/* Optical alignment */}
+                        <!-- Typography -->
                         <section class="review-section">
-                            <h3>Typography comparison</h3>
-
-                            <p class="description">
-                                Inspección del centrado del texto con diferentes fuentes heredadas.
-                            </p>
+                            <h3>Typography</h3>
 
                             <div class="comparison">
                                 {fontExamples.map((font) => (
@@ -253,39 +296,84 @@ const scenarios = [
                                     >
                                         <h4>{font.label}</h4>
 
-                                        <div class="samples">
-                                            <button type="button" class="btn">
-                                                Continue
-                                            </button>
-
-                                            <button type="button" class="btn btn-outline">
-                                                Cancel
-                                            </button>
-                                        </div>
+                                        <button type="button" class="btn">
+                                            Continue
+                                        </button>
                                     </div>
                                 ))}
                             </div>
                         </section>
 
-                        {/* Composition and action hierarchy */}
-                        {scenarios.map((scenario) => (
-                            <section class="review-section">
-                                <h3>{scenario.title}</h3>
+                        <!-- Tailwind interoperability -->
+                        <section class="review-section">
+                            <h3>Customization and layout</h3>
 
-                                <div class="scenario">
-                                    <h4>{scenario.heading}</h4>
-                                    <p>{scenario.description}</p>
+                            <div class="samples">
+                                <button
+                                    type="button"
+                                    class="btn bg-blue-800 text-white px-8 rounded-none"
+                                >
+                                    Utility override
+                                </button>
 
-                                    <div class="scenario-actions">
-                                        {scenario.actions.map((action) => (
-                                            <button type="button" class={action.className}>
-                                                {action.label}
-                                            </button>
-                                        ))}
-                                    </div>
+                                <a href="#destination" class="btn btn-outline">
+                                    Styled link
+                                </a>
+                            </div>
+
+                            <div class="block-example">
+                                <button type="button" class="btn btn-block">
+                                    Block button
+                                </button>
+                            </div>
+                        </section>
+
+                        <!-- Composition -->
+                        <section class="review-section">
+                            <h3>Action hierarchy</h3>
+
+                            <div class="scenario">
+                                <h4>¿Guardar los cambios?</h4>
+                                <p>
+                                    Primary destaca y Secondary acompaña sin competir por atención.
+                                </p>
+
+                                <div class="scenario-actions">
+                                    <button type="button" class="btn btn-secondary">
+                                        Cancelar
+                                    </button>
+
+                                    <button type="button" class="btn">
+                                        Guardar cambios
+                                    </button>
                                 </div>
-                            </section>
-                        ))}
+                            </div>
+                        </section>
+
+                        <section class="review-section">
+                            <h3>Semantic actions</h3>
+
+                            <div class="scenario">
+                                <h4>Gestión de elementos</h4>
+                                <p>Acciones generales, confirmación y eliminación.</p>
+
+                                <div class="scenario-actions">
+                                    <button type="button" class="btn">
+                                        Editar
+                                    </button>
+
+                                    <button type="button" class="btn btn-success btn-smooth">
+                                        <IconCheck size={18} stroke={1.8} aria-hidden="true" />
+                                        Confirmar
+                                    </button>
+
+                                    <button type="button" class="btn btn-error btn-ghost">
+                                        <IconTrash size={18} stroke={1.8} aria-hidden="true" />
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
                     </section>
                 ))}
             </div>
@@ -307,8 +395,6 @@ const scenarios = [
         margin: 0 auto;
         padding: 32px 20px;
     }
-
-    /* Page header */
 
     .review-header {
         margin-bottom: 28px;
@@ -350,7 +436,7 @@ const scenarios = [
         font-weight: 700;
     }
 
-    /* Review sections */
+    /* Sections */
 
     .review-section h3 {
         margin: 0 0 12px;
@@ -358,15 +444,10 @@ const scenarios = [
         font-weight: 600;
     }
 
-    .samples {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .block-example {
-        margin-top: 12px;
+    .review-section h4 {
+        margin: 0 0 12px;
+        font-size: 13px;
+        font-weight: 600;
     }
 
     .description {
@@ -376,7 +457,73 @@ const scenarios = [
         opacity: 0.72;
     }
 
-    /* Comparison panels */
+    .samples,
+    .variant-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* Variant matrix */
+
+    .variant-matrix {
+        display: grid;
+        gap: 18px;
+    }
+
+    .variant-group {
+        display: grid;
+        gap: 10px;
+    }
+
+    .variant-group h4 {
+        margin: 0;
+    }
+
+    /* State matrix */
+
+    .state-group {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .state-group h4 {
+        margin: 0;
+    }
+
+    .state-row {
+        display: grid;
+        grid-template-columns: 72px repeat(3, minmax(0, 1fr));
+        align-items: end;
+        gap: 10px;
+    }
+
+    .state-name {
+        align-self: center;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .state-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+        min-width: 0;
+    }
+
+    .state-item > span {
+        font-size: 11px;
+        opacity: 0.7;
+    }
+
+    .state-item .btn {
+        max-width: 100%;
+    }
+
+    /* Comparisons */
 
     .comparison {
         display: grid;
@@ -393,11 +540,15 @@ const scenarios = [
 
     .comparison-item h4 {
         margin: 0 0 14px;
-        font-size: 13px;
-        font-weight: 600;
     }
 
-    /* Composition scenarios */
+    /* Layout */
+
+    .block-example {
+        margin-top: 12px;
+    }
+
+    /* Composition */
 
     .scenario {
         padding: 20px;
@@ -438,7 +589,15 @@ const scenarios = [
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
+        .state-row {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .state-name {
+            grid-column: 1 / -1;
+        }
+
         .comparison {
             grid-template-columns: 1fr;
         }

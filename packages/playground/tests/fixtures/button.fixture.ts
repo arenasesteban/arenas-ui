@@ -6,41 +6,70 @@ export const roles = ['primary', 'secondary', 'success', 'warning', 'error'] as 
 
 export const semanticRoles = ['success', 'warning', 'error'] as const;
 
-export const presentations = ['outline', 'ghost'] as const;
+export const variants = ['default', 'outline', 'ghost', 'smooth'] as const;
+
+const states = ['enabled', 'disabled', 'processing'] as const;
 
 type Theme = 'light' | 'dark';
+type Role = (typeof roles)[number];
+type Variant = (typeof variants)[number];
+type State = (typeof states)[number];
 
-function roleButtons(theme: Theme): string {
-    return roles
-        .map((role) => {
-            const modifier = role === 'primary' ? '' : ` btn-${role}`;
-
-            return `
-                <button
-                    id="${theme}-${role}"
-                    type="button"
-                    class="btn${modifier}"
-                >
-                    ${role}
-                </button>
-            `;
-        })
-        .join('');
+function buttonClass(role: Role, variant: Variant): string {
+    return [
+        'btn',
+        role === 'primary' ? '' : `btn-${role}`,
+        variant === 'default' ? '' : `btn-${variant}`,
+    ]
+        .filter(Boolean)
+        .join(' ');
 }
 
-function semanticPresentationButtons(theme: Theme): string {
-    return semanticRoles
+function buttonId(theme: Theme, role: Role, variant: Variant, state: State): string {
+    if (state !== 'enabled') {
+        return `${theme}-${role}-${variant}-${state}`;
+    }
+
+    return variant === 'default' ? `${theme}-${role}` : `${theme}-${role}-${variant}`;
+}
+
+function renderButton(theme: Theme, role: Role, variant: Variant, state: State): string {
+    const id = buttonId(theme, role, variant, state);
+    const className = buttonClass(role, variant);
+
+    const attributes =
+        state === 'enabled' ? '' : state === 'disabled' ? 'disabled' : 'disabled aria-busy="true"';
+
+    const spinner =
+        state === 'processing'
+            ? '<span class="loading loading-spinner" aria-hidden="true"></span>'
+            : '';
+
+    const label =
+        state === 'enabled'
+            ? `${role} ${variant}`
+            : state === 'disabled'
+              ? 'Disabled'
+              : 'Processing';
+
+    return `
+        <button
+            id="${id}"
+            type="button"
+            class="${className}"
+            ${attributes}
+        >
+            ${spinner}
+            ${label}
+        </button>
+    `;
+}
+
+function renderThemeButtons(theme: Theme): string {
+    return roles
         .flatMap((role) =>
-            presentations.map(
-                (presentation) => `
-                    <button
-                        id="${theme}-${role}-${presentation}"
-                        type="button"
-                        class="btn btn-${role} btn-${presentation}"
-                    >
-                        ${role} ${presentation}
-                    </button>
-                `,
+            variants.flatMap((variant) =>
+                states.map((state) => renderButton(theme, role, variant, state)),
             ),
         )
         .join('');
@@ -52,6 +81,7 @@ export const buttonFixture = `
     <head>
         <meta charset="utf-8">
         <title>Arenas UI Button Tests</title>
+
         <style>${css}</style>
 
         <style>
@@ -79,24 +109,7 @@ export const buttonFixture = `
             >
                 <h2>Light theme</h2>
 
-                ${roleButtons('light')}
-                ${semanticPresentationButtons('light')}
-
-                <button
-                    id="outline"
-                    type="button"
-                    class="btn btn-outline"
-                >
-                    Outline
-                </button>
-
-                <button
-                    id="ghost"
-                    type="button"
-                    class="btn btn-ghost"
-                >
-                    Ghost
-                </button>
+                ${renderThemeButtons('light')}
 
                 <button
                     id="combined"
@@ -167,29 +180,21 @@ export const buttonFixture = `
                 <button
                     id="loading-visual"
                     type="button"
-                    class="btn btn-loading"
-                >
-                    Saving
-                </button>
-
-                <button
-                    id="loading-managed"
-                    type="button"
-                    class="btn btn-loading"
-                    disabled
-                    aria-busy="true"
-                >
-                    Saving
-                </button>
-
-                <button
-                    id="disabled"
-                    type="button"
                     class="btn"
-                    disabled
                 >
-                    Disabled
+                    <span
+                        class="loading loading-spinner"
+                        aria-hidden="true"
+                    ></span>
+                    Saving
                 </button>
+
+                <span
+                    id="standalone-spinner"
+                    class="loading loading-spinner"
+                    role="status"
+                    aria-label="Loading"
+                ></span>
 
                 <button
                     id="utility"
@@ -221,24 +226,7 @@ export const buttonFixture = `
             >
                 <h2>Dark theme</h2>
 
-                ${roleButtons('dark')}
-                ${semanticPresentationButtons('dark')}
-
-                <button
-                    id="dark-outline"
-                    type="button"
-                    class="btn btn-warning btn-outline"
-                >
-                    Outline warning
-                </button>
-
-                <button
-                    id="dark-ghost"
-                    type="button"
-                    class="btn btn-error btn-ghost"
-                >
-                    Ghost error
-                </button>
+                ${renderThemeButtons('dark')}
             </section>
 
             <section

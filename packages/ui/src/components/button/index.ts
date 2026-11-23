@@ -8,14 +8,6 @@
  * composition and are not part of the public token API.
  */
 
-export const buttonKeyframes = {
-    '@keyframes aui-button-spin': {
-        to: {
-            transform: 'rotate(360deg)',
-        },
-    },
-};
-
 export const buttonStyles = {
     // Base
     '.btn': {
@@ -24,13 +16,13 @@ export const buttonStyles = {
         '--_aui-btn-emphasis': 'var(--aui-color-primary-emphasis, var(--aui-color-primary))',
 
         '--_aui-btn-height': 'var(--aui-control-height, 2.25rem)',
-        '--_aui-btn-padding': 'var(--aui-control-padding-inline, 1rem)',
+        '--_aui-btn-padding': 'var(--aui-control-padding-inline, 1.25rem)',
 
-        // Solid border remains visible and stable across interactions.
+        // Visible solid border.
         '--_aui-btn-border':
             'color-mix(in srgb, var(--_aui-btn-color) 82%, var(--_aui-btn-content) 18%)',
 
-        // Feedback is independent from the border.
+        // Solid interaction feedback.
         '--_aui-btn-feedback': 'var(--_aui-btn-content)',
 
         '--_aui-btn-hover-background':
@@ -39,6 +31,7 @@ export const buttonStyles = {
         '--_aui-btn-active-background':
             'color-mix(in srgb, var(--_aui-btn-color) 82%, var(--_aui-btn-feedback) 18%)',
 
+        // Geometry
         boxSizing: 'border-box',
         display: 'inline-flex',
         alignItems: 'center',
@@ -47,12 +40,13 @@ export const buttonStyles = {
         verticalAlign: 'middle',
 
         minHeight: 'var(--_aui-btn-height)',
-        paddingBlock: '0.25rem',
+        paddingBlock: '0.1875rem',
         paddingInline: 'var(--_aui-btn-padding)',
 
         border: '1px solid var(--_aui-btn-border)',
-        borderRadius: 'var(--aui-radius-control, 0.375rem)',
+        borderRadius: 'var(--aui-radius-control, 0.625rem)',
 
+        // Appearance
         backgroundColor: 'var(--_aui-btn-color)',
         color: 'var(--_aui-btn-content)',
 
@@ -64,8 +58,9 @@ export const buttonStyles = {
 
         cursor: 'pointer',
         userSelect: 'none',
+        opacity: '1',
 
-        // Shared motion contract for all presentation variants.
+        // Shared motion
         transition: [
             'background-color var(--aui-motion-duration-control, 220ms) var(--aui-motion-easing-control, cubic-bezier(0.2, 0.7, 0.2, 1))',
             'border-color var(--aui-motion-duration-control, 220ms) var(--aui-motion-easing-control, cubic-bezier(0.2, 0.7, 0.2, 1))',
@@ -90,7 +85,6 @@ export const buttonStyles = {
         '--_aui-btn-content': 'var(--aui-color-success-content)',
         '--_aui-btn-emphasis': 'var(--aui-color-success-emphasis, var(--aui-color-success))',
 
-        // Darken solid interactions to preserve white text contrast.
         '--_aui-btn-feedback': '#000000',
     },
 
@@ -110,7 +104,7 @@ export const buttonStyles = {
         '--_aui-btn-feedback': '#000000',
     },
 
-    // Outline: transparent surface, semantic text and border.
+    // Outline: transparent surface and semantic border.
     '.btn-outline': {
         backgroundColor: 'transparent',
         borderColor: 'var(--_aui-btn-emphasis)',
@@ -123,7 +117,7 @@ export const buttonStyles = {
             'color-mix(in srgb, var(--_aui-btn-emphasis) 14%, transparent)',
     },
 
-    // Ghost: transparent surface and border, semantic text.
+    // Ghost: transparent surface and border at rest.
     '.btn-ghost': {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
@@ -136,44 +130,85 @@ export const buttonStyles = {
             'color-mix(in srgb, var(--_aui-btn-emphasis) 18%, transparent)',
     },
 
-    // Shared hover interaction.
-    '.btn:hover:not(:disabled):not([aria-disabled="true"])': {
+    // Smooth: subtle semantic surface visible at rest.
+    '.btn-smooth': {
+        backgroundColor:
+            'color-mix(in srgb, var(--_aui-btn-emphasis) 10%, var(--aui-color-surface) 90%)',
+
+        borderColor: 'transparent',
+
+        color: 'color-mix(in srgb, var(--_aui-btn-emphasis) 70%, var(--aui-color-text) 30%)',
+
+        '--_aui-btn-hover-background':
+            'color-mix(in srgb, var(--_aui-btn-emphasis) 16%, var(--aui-color-surface) 84%)',
+
+        '--_aui-btn-active-background':
+            'color-mix(in srgb, var(--_aui-btn-emphasis) 22%, var(--aui-color-surface) 78%)',
+    },
+
+    // Hover excludes disabled and processing buttons.
+    '.btn:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"])': {
         backgroundColor: 'var(--_aui-btn-hover-background)',
     },
 
-    // Shared active interaction.
-    '.btn:active:not(:disabled):not([aria-disabled="true"])': {
+    // Pressed excludes disabled and processing buttons.
+    '.btn:active:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"])': {
         backgroundColor: 'var(--_aui-btn-active-background)',
     },
 
-    // Keyboard focus without shadows or movement.
+    // Keyboard focus.
     '.btn:focus-visible': {
         outline: '2px solid var(--aui-color-focus)',
         outlineOffset: '3px',
     },
 
-    // Native and ARIA disabled presentation.
-    '.btn:is(:disabled, [aria-disabled="true"])': {
-        opacity: '0.55',
+    // Disabled: neutral presentation, excluding processing.
+    '.btn:is(:disabled, [aria-disabled="true"]):not([aria-busy="true"])': {
+        backgroundColor: 'var(--aui-color-disabled-surface)',
+        borderColor: 'var(--aui-color-disabled-border)',
+        color: 'var(--aui-color-disabled-content)',
         cursor: 'not-allowed',
+    },
+
+    // Disabled outline retains its transparent surface.
+    '.btn.btn-outline:is(:disabled, [aria-disabled="true"]):not([aria-busy="true"])': {
+        backgroundColor: 'transparent',
+        borderColor: 'var(--aui-color-disabled-border)',
+    },
+
+    // Disabled ghost retains its transparent presentation.
+    '.btn.btn-ghost:is(:disabled, [aria-disabled="true"]):not([aria-busy="true"])': {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+    },
+
+    // Disabled smooth retains a subtle neutral surface.
+    '.btn.btn-smooth:is(:disabled, [aria-disabled="true"]):not([aria-busy="true"])': {
+        backgroundColor: 'var(--aui-color-disabled-smooth)',
+        borderColor: 'transparent',
+    },
+
+    // Processing preserves the active presentation.
+    '.btn[aria-busy="true"]': {
+        cursor: 'progress',
     },
 
     // Sizes
     '.btn-sm': {
         '--_aui-btn-height': '1.875rem',
-        '--_aui-btn-padding': '0.75rem',
+        '--_aui-btn-padding': '0.875rem',
         fontSize: '0.75rem',
     },
 
     '.btn-md': {
         '--_aui-btn-height': 'var(--aui-control-height, 2.25rem)',
-        '--_aui-btn-padding': 'var(--aui-control-padding-inline, 1rem)',
+        '--_aui-btn-padding': 'var(--aui-control-padding-inline, 1.25rem)',
         fontSize: '0.875rem',
     },
 
     '.btn-lg': {
         '--_aui-btn-height': '2.875rem',
-        '--_aui-btn-padding': '1.25rem',
+        '--_aui-btn-padding': '1.5rem',
         fontSize: '1rem',
     },
 
@@ -201,26 +236,5 @@ export const buttonStyles = {
     '.btn-block': {
         display: 'flex',
         width: '100%',
-    },
-
-    // Visual-only loading indicator.
-    '.btn-loading::before': {
-        content: '""',
-        display: 'inline-block',
-
-        width: '1rem',
-        height: '1rem',
-        flexShrink: '0',
-
-        border: '2px solid color-mix(in srgb, currentColor 25%, transparent)',
-
-        borderTopColor: 'currentColor',
-        borderRadius: '9999px',
-
-        animation: 'aui-button-spin 850ms linear infinite',
-
-        '@media (prefers-reduced-motion: reduce)': {
-            animation: 'none',
-        },
     },
 };
