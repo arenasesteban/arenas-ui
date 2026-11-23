@@ -1,0 +1,18 @@
+@import 'tailwindcss' source(none);
+@plugin '@arenasesteban/ui';
+
+@source inline('aui-plugin-check font-bold bg-blue-500 bg-blue-800 text-white px-8 rounded-none btn btn-outline btn-ghost btn-secondary btn-success btn-warning btn-error btn-sm btn-md btn-lg btn-pill btn-square btn-circle btn-block btn-loading');
+
+/* Internal test fixture, not part of the public library. */
+@layer components {
+    .aui-token-probe {
+        background-color: var(--aui-color-primary);
+        color: var(--aui-color-primary-content);
+        outline-color: var(--aui-color-focus);
+    }
+}
+
+/* Consumer-defined customization, outside the library. */
+#custom-brand {
+    --aui-color-primary: #123456;
+}

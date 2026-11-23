@@ -1,9 +1,12 @@
 import plugin from 'tailwindcss/plugin';
 
+import { buttonKeyframes, buttonStyles } from './components/button/index.js';
+
 import { themeStyles } from './styles/themes.js';
 
 export default plugin(({ addBase, addComponents }) => {
     addBase(themeStyles);
+    addBase(buttonKeyframes);
 
     addComponents({
         '.aui-plugin-check': {
@@ -11,4 +14,6 @@ export default plugin(({ addBase, addComponents }) => {
             outlineOffset: '4px',
         },
     });
+
+    addComponents(buttonStyles);
 });

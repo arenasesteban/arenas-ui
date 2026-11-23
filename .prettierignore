@@ -1,18 +1,18 @@
 # Dependencies
 **/node_modules/
 
-# Package builds
+# Builds
 **/dist/
 
 # Lockfile
 pnpm-lock.yaml
 
-# Astro generated metadata
+# Astro
 .astro/
 
-# Generated plugin test output
-packages/playground/tests/plugin.generated.css
-
-# Playwright test output
-playwright-report/
+# Playwright
 test-results/
+playwright-report/
+
+# Generated test CSS
+*.generated.css

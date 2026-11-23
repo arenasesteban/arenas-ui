@@ -14,9 +14,9 @@
         "lint": "eslint .",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "test:plugin": "pnpm --filter @arenasesteban/playground test:plugin",
-        "test:themes": "pnpm --filter @arenasesteban/playground test:themes",
-        "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build && pnpm test:plugin && pnpm test:themes"
+        "test:contracts": "pnpm --filter @arenasesteban/ui test:contracts",
+        "test:browser": "pnpm --filter @arenasesteban/playground test:browser",
+        "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build && pnpm test:contracts && pnpm test:browser"
     },
     "devDependencies": {
         "@eslint/js": "10.0.1",

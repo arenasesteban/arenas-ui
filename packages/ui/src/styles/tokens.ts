@@ -1,50 +1,84 @@
+/**
+ * Shared dimensions and motion for Arenas UI controls.
+ */
 export const sharedTokens = {
-    '--aui-radius-control': '0.5rem',
+    '--aui-radius-control': '0.375rem',
     '--aui-radius-surface': '0.75rem',
-    '--aui-control-height': '2.5rem',
+    '--aui-control-height': '2.25rem',
     '--aui-control-padding-inline': '1rem',
+
+    '--aui-motion-duration-control': '220ms',
+    '--aui-motion-easing-control': 'cubic-bezier(0.2, 0.7, 0.2, 1)',
 };
 
+/**
+ * Light theme.
+ */
 export const lightTokens = {
-    '--aui-color-primary': '#292524',
-    '--aui-color-primary-content': '#FAFAF9',
+    // Primary
+    '--aui-color-primary': '#18181B',
+    '--aui-color-primary-content': '#FFFFFF',
+    '--aui-color-primary-emphasis': '#18181B',
 
-    '--aui-color-secondary': '#44403C',
-    '--aui-color-secondary-content': '#FAFAF9',
+    // Secondary
+    '--aui-color-secondary': '#FFFFFF',
+    '--aui-color-secondary-content': '#18181B',
+    '--aui-color-secondary-emphasis': '#18181B',
 
-    '--aui-color-success': '#166534',
+    // Success
+    '--aui-color-success': '#047857',
     '--aui-color-success-content': '#FFFFFF',
+    '--aui-color-success-emphasis': '#047857',
 
-    '--aui-color-warning': '#92400E',
-    '--aui-color-warning-content': '#FFFFFF',
+    // Warning
+    '--aui-color-warning': '#F59E0B',
+    '--aui-color-warning-content': '#18181B',
+    '--aui-color-warning-emphasis': '#C2410C',
 
-    '--aui-color-error': '#991B1B',
+    // Error
+    '--aui-color-error': '#DC2626',
     '--aui-color-error-content': '#FFFFFF',
+    '--aui-color-error-emphasis': '#DC2626',
 
-    '--aui-color-surface': '#FAFAF9',
-    '--aui-color-text': '#292524',
-    '--aui-color-border': '#78716C',
-    '--aui-color-focus': '#57534E',
+    // Surfaces and accessibility
+    '--aui-color-surface': '#FFFFFF',
+    '--aui-color-text': '#18181B',
+    '--aui-color-border': '#D4D4D8',
+    '--aui-color-focus': '#3B82F6',
 };
 
+/**
+ * Dark theme.
+ */
 export const darkTokens = {
-    '--aui-color-primary': '#E7E5E4',
-    '--aui-color-primary-content': '#1C1917',
+    // Primary
+    '--aui-color-primary': '#FFFFFF',
+    '--aui-color-primary-content': '#18181B',
+    '--aui-color-primary-emphasis': '#FFFFFF',
 
-    '--aui-color-secondary': '#D6D3D1',
-    '--aui-color-secondary-content': '#1C1917',
+    // Secondary
+    '--aui-color-secondary': '#18181B',
+    '--aui-color-secondary-content': '#FFFFFF',
+    '--aui-color-secondary-emphasis': '#FFFFFF',
 
-    '--aui-color-success': '#86EFAC',
-    '--aui-color-success-content': '#052E16',
+    // Success
+    '--aui-color-success': '#047857',
+    '--aui-color-success-content': '#FFFFFF',
+    '--aui-color-success-emphasis': '#34D399',
 
-    '--aui-color-warning': '#FDE68A',
-    '--aui-color-warning-content': '#422006',
+    // Warning
+    '--aui-color-warning': '#F59E0B',
+    '--aui-color-warning-content': '#18181B',
+    '--aui-color-warning-emphasis': '#FBBF24',
 
-    '--aui-color-error': '#FCA5A5',
-    '--aui-color-error-content': '#450A0A',
+    // Error
+    '--aui-color-error': '#DC2626',
+    '--aui-color-error-content': '#FFFFFF',
+    '--aui-color-error-emphasis': '#F87171',
 
-    '--aui-color-surface': '#1C1917',
-    '--aui-color-text': '#F5F5F4',
-    '--aui-color-border': '#78716C',
-    '--aui-color-focus': '#D6D3D1',
+    // Surfaces and accessibility
+    '--aui-color-surface': '#09090B',
+    '--aui-color-text': '#FFFFFF',
+    '--aui-color-border': '#52525B',
+    '--aui-color-focus': '#3B82F6',
 };

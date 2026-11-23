@@ -1,27 +1,30 @@
 # Dependencies
 node_modules/
 
-# Build output
+# Builds
 dist/
 
-# Local environment
+# Astro
+.astro/
+
+# Playwright
+test-results/
+playwright-report/
+
+# Generated test CSS
+*.generated.css
+
+# Environment files
 .env
 .env.*
 !.env.example
 
-# Logs
-*.log
-
-# Operating system
+# Local system files
 .DS_Store
 Thumbs.db
 
-# Astro generated metadata
-.astro/
+# Logs
+*.log
 
-# Generated plugin test output
-packages/playground/tests/plugin.generated.css
-
-# Playwright test output
-playwright-report/
-test-results/
+# IDE files
+.vscode/

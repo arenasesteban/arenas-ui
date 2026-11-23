@@ -1,11 +1,13 @@
 import { darkTokens, lightTokens, sharedTokens } from './tokens.js';
 
 /**
- * Theme precedence:
- * - Default: light.
- * - System preference: dark when no explicit root theme exists.
- * - data-theme: explicit light/dark selection.
- * - Nested themes: override inherited values within their subtree.
+ * CSS rules registered by the Tailwind plugin.
+ *
+ * Theme resolution:
+ * - No data-theme: follow the system preference.
+ * - data-theme="light": force light.
+ * - data-theme="dark": force dark.
+ * - Nested themed containers: inherit their own token values.
  */
 export const themeStyles = {
     ':root': {

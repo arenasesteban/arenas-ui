@@ -1,0 +1,446 @@
+---
+import '../styles/global.css';
+
+const themes = [
+    { id: 'light', title: 'Light theme' },
+    { id: 'dark', title: 'Dark theme' },
+] as const;
+
+const sizes = [
+    { label: 'Small', className: 'btn btn-sm' },
+    { label: 'Medium', className: 'btn btn-md' },
+    { label: 'Large', className: 'btn btn-lg' },
+] as const;
+
+const variantGroups = [
+    {
+        title: 'Semantic colors',
+        buttons: [
+            { label: 'Primary', className: 'btn' },
+            { label: 'Secondary', className: 'btn btn-secondary' },
+            { label: 'Success', className: 'btn btn-success' },
+            { label: 'Warning', className: 'btn btn-warning' },
+            { label: 'Error', className: 'btn btn-error' },
+        ],
+    },
+    {
+        title: 'Presentation',
+        buttons: [
+            { label: 'Solid', className: 'btn' },
+            { label: 'Outline', className: 'btn btn-outline' },
+            { label: 'Ghost', className: 'btn btn-ghost' },
+            {
+                label: 'Success outline',
+                className: 'btn btn-success btn-outline',
+            },
+            {
+                label: 'Error ghost',
+                className: 'btn btn-error btn-ghost',
+            },
+        ],
+    },
+    {
+        title: 'Sizes',
+        buttons: sizes,
+    },
+] as const;
+
+const stateButtons = [
+    {
+        label: 'Disabled',
+        className: 'btn',
+        disabled: true,
+        busy: false,
+    },
+    {
+        label: 'Loading visual',
+        className: 'btn btn-loading',
+        disabled: false,
+        busy: false,
+    },
+    {
+        label: 'Loading managed',
+        className: 'btn btn-loading',
+        disabled: true,
+        busy: true,
+    },
+] as const;
+
+const radiusExamples = [
+    { label: 'Default · 6 px', value: undefined },
+    { label: 'Override · 8 px', value: '0.5rem' },
+] as const;
+
+const fontExamples = [
+    { label: 'System UI', family: 'system-ui, sans-serif' },
+    { label: 'Arial', family: 'Arial, sans-serif' },
+] as const;
+
+const scenarios = [
+    {
+        title: 'Action hierarchy',
+        heading: '¿Guardar los cambios?',
+        description: 'Revisa la relación visual entre la acción principal y la secundaria.',
+        actions: [
+            { label: 'Cancelar', className: 'btn btn-secondary' },
+            { label: 'Guardar cambios', className: 'btn' },
+        ],
+    },
+    {
+        title: 'Semantic actions',
+        heading: 'Gestión de elementos',
+        description:
+            'Compara la jerarquía de las acciones generales, de confirmación y de eliminación.',
+        actions: [
+            { label: 'Editar', className: 'btn' },
+            {
+                label: 'Confirmar',
+                className: 'btn btn-success btn-outline',
+            },
+            {
+                label: 'Eliminar',
+                className: 'btn btn-error btn-ghost',
+            },
+        ],
+    },
+] as const;
+---
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Button Review — Arenas UI</title>
+    </head>
+
+    <body>
+        <main class="review">
+            <header class="review-header">
+                <h1>Arenas UI — Button</h1>
+            </header>
+
+            <div class="themes">
+                {themes.map((theme) => (
+                    <section class="theme" data-theme={theme.id}>
+                        <h2>{theme.title}</h2>
+
+                        {/* Public variants */}
+                        {variantGroups.map((group) => (
+                            <section class="review-section">
+                                <h3>{group.title}</h3>
+
+                                <div class="samples">
+                                    {group.buttons.map((button) => (
+                                        <button type="button" class={button.className}>
+                                            {button.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </section>
+                        ))}
+
+                        {/* Shapes */}
+                        <section class="review-section">
+                            <h3>Shapes</h3>
+
+                            <div class="samples">
+                                <button type="button" class="btn btn-pill">
+                                    Pill
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-square"
+                                    aria-label="Abrir menú"
+                                >
+                                    <span aria-hidden="true">☰</span>
+                                </button>
+
+                                <button type="button" class="btn btn-circle" aria-label="Cerrar">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        {/* Native and visual states */}
+                        <section class="review-section">
+                            <h3>States</h3>
+
+                            <div class="samples">
+                                {stateButtons.map((button) => (
+                                    <button
+                                        type="button"
+                                        class={button.className}
+                                        disabled={button.disabled}
+                                        aria-busy={button.busy ? 'true' : undefined}
+                                    >
+                                        {button.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Tailwind interoperability */}
+                        <section class="review-section">
+                            <h3>Customization and layout</h3>
+
+                            <div class="samples">
+                                <button
+                                    type="button"
+                                    class="btn bg-blue-800 text-white px-8 rounded-none"
+                                >
+                                    Utility override
+                                </button>
+
+                                <a href="#destination" class="btn btn-outline">
+                                    Styled link
+                                </a>
+                            </div>
+
+                            <div class="block-example">
+                                <button type="button" class="btn btn-block">
+                                    Block button
+                                </button>
+                            </div>
+                        </section>
+
+                        {/* Public radius token */}
+                        <section class="review-section">
+                            <h3>Geometry and customization</h3>
+
+                            <p class="description">
+                                Radio predeterminado de 6 px y ejemplo de personalización a 8 px.
+                            </p>
+
+                            <div class="comparison">
+                                {radiusExamples.map((radius) => (
+                                    <div class="comparison-item">
+                                        <h4>{radius.label}</h4>
+
+                                        <div class="samples">
+                                            {sizes.map((size) => (
+                                                <button
+                                                    type="button"
+                                                    class={size.className}
+                                                    style={
+                                                        radius.value
+                                                            ? `--aui-radius-control: ${radius.value}`
+                                                            : undefined
+                                                    }
+                                                >
+                                                    {size.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Optical alignment */}
+                        <section class="review-section">
+                            <h3>Typography comparison</h3>
+
+                            <p class="description">
+                                Inspección del centrado del texto con diferentes fuentes heredadas.
+                            </p>
+
+                            <div class="comparison">
+                                {fontExamples.map((font) => (
+                                    <div
+                                        class="comparison-item"
+                                        style={`font-family: ${font.family}`}
+                                    >
+                                        <h4>{font.label}</h4>
+
+                                        <div class="samples">
+                                            <button type="button" class="btn">
+                                                Continue
+                                            </button>
+
+                                            <button type="button" class="btn btn-outline">
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Composition and action hierarchy */}
+                        {scenarios.map((scenario) => (
+                            <section class="review-section">
+                                <h3>{scenario.title}</h3>
+
+                                <div class="scenario">
+                                    <h4>{scenario.heading}</h4>
+                                    <p>{scenario.description}</p>
+
+                                    <div class="scenario-actions">
+                                        {scenario.actions.map((action) => (
+                                            <button type="button" class={action.className}>
+                                                {action.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </section>
+                        ))}
+                    </section>
+                ))}
+            </div>
+
+            <div id="destination"></div>
+        </main>
+    </body>
+</html>
+
+<style>
+    body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: #f4f4f5;
+    }
+
+    .review {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 32px 20px;
+    }
+
+    /* Page header */
+
+    .review-header {
+        margin-bottom: 28px;
+    }
+
+    .review-header h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .review-header p {
+        margin: 0;
+        color: #52525b;
+    }
+
+    /* Theme panels */
+
+    .themes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .theme {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        min-width: 0;
+        padding: 28px;
+        border-radius: 12px;
+        background: var(--aui-color-surface);
+        color: var(--aui-color-text);
+    }
+
+    .theme h2 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    /* Review sections */
+
+    .review-section h3 {
+        margin: 0 0 12px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .samples {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .block-example {
+        margin-top: 12px;
+    }
+
+    .description {
+        margin: 0 0 14px;
+        font-size: 13px;
+        line-height: 1.5;
+        opacity: 0.72;
+    }
+
+    /* Comparison panels */
+
+    .comparison {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .comparison-item {
+        min-width: 0;
+        padding: 16px;
+        border: 1px solid var(--aui-color-border);
+        border-radius: var(--aui-radius-surface);
+    }
+
+    .comparison-item h4 {
+        margin: 0 0 14px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    /* Composition scenarios */
+
+    .scenario {
+        padding: 20px;
+        border: 1px solid var(--aui-color-border);
+        border-radius: var(--aui-radius-surface);
+    }
+
+    .scenario h4 {
+        margin: 0 0 8px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .scenario p {
+        margin: 0 0 18px;
+        font-size: 13px;
+        line-height: 1.5;
+        opacity: 0.72;
+    }
+
+    .scenario-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+        .themes {
+            grid-template-columns: 1fr;
+        }
+
+        .theme {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .comparison {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
