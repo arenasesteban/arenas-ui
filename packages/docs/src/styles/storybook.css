@@ -1,0 +1,116 @@
+@import 'tailwindcss' source(none);
+@plugin '@arenasesteban/ui';
+
+@source '../stories';
+
+/*
+ * Storybook documentation styles.
+ *
+ * These classes provide documentation layout only.
+ * They are not part of the public Arenas UI API.
+ */
+
+/* Component previews */
+
+.aui-docs-stage {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 168px;
+    padding: 2.5rem;
+
+    background: var(--aui-color-surface);
+    color: var(--aui-color-text);
+
+    font-family: system-ui, sans-serif;
+}
+
+.aui-docs-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.875rem;
+    width: 100%;
+    min-width: 0;
+}
+
+.aui-docs-row > [data-theme] {
+    box-sizing: border-box;
+    flex: 1 1 240px;
+    min-width: 0;
+
+    border: 1px solid var(--aui-color-border);
+    border-radius: var(--aui-radius-surface);
+}
+
+/* Public class reference */
+
+.aui-docs-reference {
+    width: 100%;
+    overflow-x: auto;
+
+    margin: 1.25rem 0 2rem;
+
+    border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+    border-radius: 0.75rem;
+}
+
+.aui-docs-class-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    text-align: left;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.aui-docs-class-table th,
+.aui-docs-class-table td {
+    padding: 0.875rem 1rem;
+
+    border-bottom: 1px solid color-mix(in srgb, currentColor 9%, transparent);
+
+    text-align: left;
+    vertical-align: middle;
+}
+
+.aui-docs-class-table th {
+    font-weight: 600;
+
+    background: color-mix(in srgb, currentColor 5%, transparent);
+}
+
+.aui-docs-class-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.aui-docs-class-table tbody tr:hover {
+    background: color-mix(in srgb, currentColor 3%, transparent);
+}
+
+.aui-docs-class-table td:first-child {
+    white-space: nowrap;
+}
+
+/* Responsive documentation */
+
+@media (max-width: 640px) {
+    .aui-docs-stage {
+        min-height: 140px;
+        padding: 1.5rem;
+    }
+
+    .aui-docs-row {
+        gap: 0.75rem;
+    }
+
+    .aui-docs-class-table th,
+    .aui-docs-class-table td {
+        padding: 0.75rem;
+    }
+}

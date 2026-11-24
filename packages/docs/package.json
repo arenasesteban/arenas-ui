@@ -1,0 +1,25 @@
+{
+    "name": "@arenasesteban/docs",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "devDependencies": {
+        "@arenasesteban/ui": "workspace:*",
+        "@playwright/test": "1.65.1",
+        "@storybook/addon-docs": "10.6.8",
+        "@storybook/html-vite": "10.6.8",
+        "@tailwindcss/vite": "4.3.5",
+        "@types/node": "26.6.6",
+        "eslint-plugin-storybook": "^10.6.8",
+        "storybook": "10.6.8",
+        "tailwindcss": "4.3.5",
+        "typescript": "6.0.3",
+        "vite": "8.3.8"
+    },
+    "scripts": {
+        "dev": "storybook dev -p 6006 --no-open --ci",
+        "build": "storybook build",
+        "typecheck": "tsc --noEmit --project tsconfig.json",
+        "test:smoke": "playwright test"
+    }
+}

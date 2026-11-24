@@ -24,7 +24,7 @@ const roles = [
 ] as const;
 
 const variants = [
-    { label: 'Default', className: '' },
+    { label: 'Solid', className: '' },
     { label: 'Outline', className: 'btn-outline' },
     { label: 'Ghost', className: 'btn-ghost' },
     { label: 'Smooth', className: 'btn-smooth' },
@@ -40,16 +40,6 @@ const stateRoles = [
     { label: 'Primary', className: '' },
     { label: 'Success', className: 'btn-success' },
 ] as const;
-
-const radiusExamples = [
-    { label: 'Default · 10 px', value: undefined },
-    { label: 'Override · 8 px', value: '0.5rem' },
-] as const;
-
-const fontExamples = [
-    { label: 'System UI', family: 'system-ui, sans-serif' },
-    { label: 'Arial', family: 'Arial, sans-serif' },
-] as const;
 ---
 
 <html lang="es">
@@ -63,7 +53,7 @@ const fontExamples = [
         <main class="review">
             <header class="review-header">
                 <h1>Arenas UI — Button Review</h1>
-                <p>Revisión visual · Jerarquía, geometría y estados</p>
+                <p>Visual validation · Variants, states, geometry and composition</p>
             </header>
 
             <div class="themes">
@@ -71,162 +61,171 @@ const fontExamples = [
                     <section class="theme" data-theme={theme.id}>
                         <h2>{theme.title}</h2>
 
-                        <!-- Variants and semantic roles -->
+                        <!-- Variants and semantic colors -->
                         <section class="review-section">
-                            <h3>Variants and semantic colors</h3>
+                            <h3>Variants & Semantic Colors</h3>
 
-                            <p class="description">
-                                Cuatro presentaciones con cinco roles de color. Primary y Secondary
-                                tienen jerarquías distintas.
-                            </p>
+                            <div class="matrix-scroll">
+                                <div class="matrix matrix--variants">
+                                    <div class="matrix-row matrix-row--header">
+                                        <span>Color</span>
 
-                            <div class="variant-matrix">
-                                {roles.map((role) => (
-                                    <div class="variant-group">
-                                        <h4>{role.label}</h4>
+                                        {variants.map((variant) => (
+                                            <span>{variant.label}</span>
+                                        ))}
+                                    </div>
 
-                                        <div class="variant-buttons">
+                                    {roles.map((role) => (
+                                        <div class="matrix-row">
+                                            <span class="matrix-label">{role.label}</span>
+
                                             {variants.map((variant) => (
-                                                <button
-                                                    type="button"
-                                                    class={`btn ${role.className} ${variant.className}`.trim()}
-                                                >
-                                                    {variant.label}
-                                                </button>
+                                                <div class="matrix-cell">
+                                                    <button
+                                                        type="button"
+                                                        class={`btn ${role.className} ${variant.className}`.trim()}
+                                                    >
+                                                        Action
+                                                    </button>
+                                                </div>
                                             ))}
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-
-                        <!-- Sizes -->
-                        <section class="review-section">
-                            <h3>Sizes</h3>
-
-                            <div class="samples">
-                                {sizes.map((size) => (
-                                    <button type="button" class={size.className}>
-                                        {size.label}
-                                    </button>
-                                ))}
-                            </div>
-                        </section>
-
-                        <!-- Shapes -->
-                        <section class="review-section">
-                            <h3>Shapes</h3>
-
-                            <div class="samples">
-                                <button type="button" class="btn">
-                                    Regular
-                                </button>
-
-                                <button type="button" class="btn btn-pill">
-                                    Rounded
-                                </button>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-square"
-                                    aria-label="Abrir menú"
-                                >
-                                    <IconMenu2 size={18} stroke={1.8} aria-hidden="true" />
-                                </button>
-
-                                <button type="button" class="btn btn-circle" aria-label="Cerrar">
-                                    <IconX size={18} stroke={1.8} aria-hidden="true" />
-                                </button>
-                            </div>
-                        </section>
-
-                        <!-- Disabled and processing -->
-                        <section class="review-section">
-                            <h3>States</h3>
-
-                            <p class="description">
-                                Disabled utiliza colores neutrales. Processing conserva la
-                                apariencia de la variante, incluso con disabled.
-                            </p>
-
-                            {stateRoles.map((role) => (
-                                <div class="state-group">
-                                    <h4>{role.label}</h4>
-
-                                    {variants.map((variant) => {
-                                        const buttonClass =
-                                            `btn ${role.className} ${variant.className}`.trim();
-
-                                        return (
-                                            <div class="state-row">
-                                                <span class="state-name">{variant.label}</span>
-
-                                                <div class="state-item">
-                                                    <span>Enabled</span>
-                                                    <button type="button" class={buttonClass}>
-                                                        Action
-                                                    </button>
-                                                </div>
-
-                                                <div class="state-item">
-                                                    <span>Disabled</span>
-                                                    <button
-                                                        type="button"
-                                                        class={buttonClass}
-                                                        disabled
-                                                    >
-                                                        Action
-                                                    </button>
-                                                </div>
-
-                                                <div class="state-item">
-                                                    <span>Processing</span>
-                                                    <button
-                                                        type="button"
-                                                        class={buttonClass}
-                                                        disabled
-                                                        aria-busy="true"
-                                                    >
-                                                        <span
-                                                            class="loading loading-spinner"
-                                                            aria-hidden="true"
-                                                        ></span>
-                                                        Processing
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
+                                    ))}
                                 </div>
-                            ))}
+                            </div>
                         </section>
 
-                        <!-- Loading -->
+                        <!-- Sizes and shapes -->
                         <section class="review-section">
-                            <h3>Loading indicator</h3>
+                            <h3>Sizes & Shapes</h3>
 
-                            <div class="samples">
+                            <div class="review-group">
+                                <h4>Sizes</h4>
+
+                                <div class="samples">
+                                    {sizes.map((size) => (
+                                        <button type="button" class={size.className}>
+                                            {size.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div class="review-group">
+                                <h4>Shapes</h4>
+
+                                <div class="samples">
+                                    <button type="button" class="btn">
+                                        Regular
+                                    </button>
+
+                                    <button type="button" class="btn btn-pill">
+                                        Rounded
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-square"
+                                        aria-label="Abrir menú"
+                                    >
+                                        <IconMenu2 size={18} stroke={1.8} aria-hidden="true" />
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-circle"
+                                        aria-label="Cerrar"
+                                    >
+                                        <IconX size={18} stroke={1.8} aria-hidden="true" />
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- States and loading -->
+                        <section class="review-section">
+                            <h3>States & Loading</h3>
+
+                            <div class="matrix-scroll">
+                                <div class="matrix matrix--states">
+                                    <div class="matrix-row matrix-row--header">
+                                        <span>Variant</span>
+                                        <span>Enabled</span>
+                                        <span>Disabled</span>
+                                        <span>Processing</span>
+                                    </div>
+
+                                    {stateRoles.map((role) => (
+                                        <div class="matrix-group">
+                                            <h4>{role.label}</h4>
+
+                                            {variants.map((variant) => {
+                                                const buttonClass =
+                                                    `btn ${role.className} ${variant.className}`.trim();
+
+                                                return (
+                                                    <div class="matrix-row">
+                                                        <span class="matrix-label">
+                                                            {variant.label}
+                                                        </span>
+
+                                                        <div class="matrix-cell">
+                                                            <button
+                                                                type="button"
+                                                                class={buttonClass}
+                                                            >
+                                                                Action
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="matrix-cell">
+                                                            <button
+                                                                type="button"
+                                                                class={buttonClass}
+                                                                disabled
+                                                            >
+                                                                Action
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="matrix-cell">
+                                                            <button
+                                                                type="button"
+                                                                class={buttonClass}
+                                                                disabled
+                                                                aria-busy="true"
+                                                            >
+                                                                <span
+                                                                    class="loading loading-spinner"
+                                                                    aria-hidden="true"
+                                                                ></span>
+                                                                Action
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div class="supporting-example">
+                                <span class="supporting-example-label">
+                                    Standalone loading indicator
+                                </span>
+
                                 <span
                                     class="loading loading-spinner"
                                     role="status"
                                     aria-label="Cargando"
                                 ></span>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-outline"
-                                    disabled
-                                    aria-busy="true"
-                                >
-                                    <span class="loading loading-spinner" aria-hidden="true"></span>
-                                    Procesando...
-                                </button>
                             </div>
                         </section>
 
-                        <!-- Tabler icons -->
+                        <!-- Iconography -->
                         <section class="review-section">
-                            <h3>Buttons with icons</h3>
+                            <h3>Iconography</h3>
 
                             <div class="samples">
                                 <button type="button" class="btn btn-success">
@@ -251,126 +250,131 @@ const fontExamples = [
                             </div>
                         </section>
 
-                        <!-- Geometry -->
+                        <!-- Customization -->
                         <section class="review-section">
-                            <h3>Geometry</h3>
+                            <h3>Customization</h3>
 
-                            <p class="description">
-                                Radio regular de 10 px y ejemplo de personalización mediante token.
-                            </p>
+                            <div class="review-group">
+                                <h4>Control radius</h4>
 
-                            <div class="comparison">
-                                {radiusExamples.map((radius) => (
+                                <div class="comparison">
                                     <div class="comparison-item">
-                                        <h4>{radius.label}</h4>
+                                        <span class="comparison-label">Theme default</span>
 
-                                        <div class="samples">
-                                            {sizes.map((size) => (
-                                                <button
-                                                    type="button"
-                                                    class={size.className}
-                                                    style={
-                                                        radius.value
-                                                            ? `--aui-radius-control: ${radius.value}`
-                                                            : undefined
-                                                    }
-                                                >
-                                                    {size.label}
-                                                </button>
-                                            ))}
-                                        </div>
+                                        <button type="button" class="btn">
+                                            Default
+                                        </button>
                                     </div>
-                                ))}
+
+                                    <div class="comparison-item">
+                                        <span class="comparison-label">Token override</span>
+
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            style="--aui-radius-control: 0.5rem"
+                                        >
+                                            Custom radius
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </section>
 
-                        <!-- Typography -->
-                        <section class="review-section">
-                            <h3>Typography</h3>
+                            <div class="review-group">
+                                <h4>Typography inheritance</h4>
 
-                            <div class="comparison">
-                                {fontExamples.map((font) => (
+                                <div class="comparison">
                                     <div
                                         class="comparison-item"
-                                        style={`font-family: ${font.family}`}
+                                        style="font-family: system-ui, sans-serif"
                                     >
-                                        <h4>{font.label}</h4>
+                                        <span class="comparison-label">System UI</span>
 
                                         <button type="button" class="btn">
                                             Continue
                                         </button>
                                     </div>
-                                ))}
-                            </div>
-                        </section>
 
-                        <!-- Tailwind interoperability -->
-                        <section class="review-section">
-                            <h3>Customization and layout</h3>
+                                    <div
+                                        class="comparison-item"
+                                        style="font-family: Arial, sans-serif"
+                                    >
+                                        <span class="comparison-label">Arial</span>
 
-                            <div class="samples">
-                                <button
-                                    type="button"
-                                    class="btn bg-blue-800 text-white px-8 rounded-none"
-                                >
-                                    Utility override
-                                </button>
-
-                                <a href="#destination" class="btn btn-outline">
-                                    Styled link
-                                </a>
+                                        <button type="button" class="btn">
+                                            Continue
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="block-example">
-                                <button type="button" class="btn btn-block">
-                                    Block button
-                                </button>
-                            </div>
-                        </section>
+                            <div class="review-group">
+                                <h4>Utilities & Layout</h4>
 
-                        <!-- Composition -->
-                        <section class="review-section">
-                            <h3>Action hierarchy</h3>
-
-                            <div class="scenario">
-                                <h4>¿Guardar los cambios?</h4>
-                                <p>
-                                    Primary destaca y Secondary acompaña sin competir por atención.
-                                </p>
-
-                                <div class="scenario-actions">
-                                    <button type="button" class="btn btn-secondary">
-                                        Cancelar
+                                <div class="samples">
+                                    <button
+                                        type="button"
+                                        class="btn bg-blue-800 text-white px-8 rounded-none"
+                                    >
+                                        Utility override
                                     </button>
 
-                                    <button type="button" class="btn">
-                                        Guardar cambios
+                                    <a href="#destination" class="btn btn-outline">
+                                        Styled link
+                                    </a>
+                                </div>
+
+                                <div class="block-example">
+                                    <button type="button" class="btn btn-block">
+                                        Block button
                                     </button>
                                 </div>
                             </div>
                         </section>
 
+                        <!-- Composition -->
                         <section class="review-section">
-                            <h3>Semantic actions</h3>
+                            <h3>Composition</h3>
 
-                            <div class="scenario">
-                                <h4>Gestión de elementos</h4>
-                                <p>Acciones generales, confirmación y eliminación.</p>
+                            <div class="review-group">
+                                <h4>Action hierarchy</h4>
 
-                                <div class="scenario-actions">
-                                    <button type="button" class="btn">
-                                        Editar
-                                    </button>
+                                <div class="scenario">
+                                    <p>¿Guardar los cambios?</p>
 
-                                    <button type="button" class="btn btn-success btn-smooth">
-                                        <IconCheck size={18} stroke={1.8} aria-hidden="true" />
-                                        Confirmar
-                                    </button>
+                                    <div class="scenario-actions">
+                                        <button type="button" class="btn btn-secondary">
+                                            Cancelar
+                                        </button>
 
-                                    <button type="button" class="btn btn-error btn-ghost">
-                                        <IconTrash size={18} stroke={1.8} aria-hidden="true" />
-                                        Eliminar
-                                    </button>
+                                        <button type="button" class="btn">
+                                            Guardar cambios
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="review-group">
+                                <h4>Semantic actions</h4>
+
+                                <div class="scenario">
+                                    <p>Gestión de elementos</p>
+
+                                    <div class="scenario-actions">
+                                        <button type="button" class="btn">
+                                            Editar
+                                        </button>
+
+                                        <button type="button" class="btn btn-success btn-smooth">
+                                            <IconCheck size={18} stroke={1.8} aria-hidden="true" />
+                                            Confirmar
+                                        </button>
+
+                                        <button type="button" class="btn btn-error btn-ghost">
+                                            <IconTrash size={18} stroke={1.8} aria-hidden="true" />
+                                            Eliminar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -389,6 +393,8 @@ const fontExamples = [
         font-family: system-ui, sans-serif;
         background: #f4f4f5;
     }
+
+    /* Page layout */
 
     .review {
         max-width: 1440px;
@@ -409,6 +415,7 @@ const fontExamples = [
     .review-header p {
         margin: 0;
         color: #52525b;
+        font-size: 14px;
     }
 
     /* Theme panels */
@@ -422,10 +429,11 @@ const fontExamples = [
     .theme {
         display: flex;
         flex-direction: column;
-        gap: 28px;
+        gap: 30px;
         min-width: 0;
         padding: 28px;
-        border-radius: 12px;
+        border: 1px solid var(--aui-color-border);
+        border-radius: var(--aui-radius-surface);
         background: var(--aui-color-surface);
         color: var(--aui-color-text);
     }
@@ -434,96 +442,154 @@ const fontExamples = [
         margin: 0;
         font-size: 22px;
         font-weight: 700;
+        line-height: 1.3;
     }
 
-    /* Sections */
+    /* Section hierarchy */
+
+    .review-section {
+        display: grid;
+        gap: 18px;
+        min-width: 0;
+    }
+
+    .review-section + .review-section {
+        padding-top: 28px;
+        border-top: 1px solid var(--aui-color-border);
+    }
 
     .review-section h3 {
-        margin: 0 0 12px;
-        font-size: 14px;
-        font-weight: 600;
+        margin: 0;
+        font-size: 16px;
+        font-weight: 650;
+        line-height: 1.4;
     }
 
     .review-section h4 {
-        margin: 0 0 12px;
-        font-size: 13px;
+        margin: 0;
+        font-size: 14px;
         font-weight: 600;
+        line-height: 1.4;
     }
 
-    .description {
-        margin: 0 0 14px;
-        font-size: 13px;
-        line-height: 1.5;
-        opacity: 0.72;
+    .review-group {
+        display: grid;
+        gap: 12px;
+        min-width: 0;
     }
 
-    .samples,
-    .variant-buttons {
+    .review-group + .review-group {
+        padding-top: 8px;
+    }
+
+    .samples {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 12px;
     }
 
-    /* Variant matrix */
+    /* Shared comparison matrices */
 
-    .variant-matrix {
-        display: grid;
-        gap: 18px;
-    }
-
-    .variant-group {
-        display: grid;
-        gap: 10px;
-    }
-
-    .variant-group h4 {
-        margin: 0;
-    }
-
-    /* State matrix */
-
-    .state-group {
-        display: grid;
-        gap: 12px;
-        margin-top: 18px;
-    }
-
-    .state-group h4 {
-        margin: 0;
-    }
-
-    .state-row {
-        display: grid;
-        grid-template-columns: 72px repeat(3, minmax(0, 1fr));
-        align-items: end;
-        gap: 10px;
-    }
-
-    .state-name {
-        align-self: center;
-        font-size: 12px;
-        font-weight: 600;
-    }
-
-    .state-item {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 7px;
+    .matrix-scroll {
+        width: 100%;
         min-width: 0;
+        overflow-x: auto;
     }
 
-    .state-item > span {
+    .matrix {
+        display: grid;
+        gap: 10px;
+        min-width: var(--matrix-min-width);
+    }
+
+    .matrix--variants {
+        --matrix-columns: 88px repeat(4, minmax(105px, 1fr));
+        --matrix-min-width: 570px;
+    }
+
+    .matrix--states {
+        --matrix-columns: 88px repeat(3, minmax(115px, 1fr));
+        --matrix-min-width: 500px;
+    }
+
+    .matrix-row {
+        display: grid;
+        grid-template-columns: var(--matrix-columns);
+        align-items: center;
+        gap: 12px;
+        min-height: 42px;
+    }
+
+    .matrix-row--header {
+        min-height: auto;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--aui-color-border);
+    }
+
+    .matrix-row--header span {
         font-size: 11px;
+        font-weight: 600;
+        line-height: 1.4;
+        letter-spacing: 0.025em;
         opacity: 0.7;
     }
 
-    .state-item .btn {
+    .matrix-row--header span:not(:first-child) {
+        text-align: center;
+    }
+
+    .matrix-label {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.4;
+        opacity: 0.8;
+    }
+
+    .matrix-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        min-height: 42px;
+    }
+
+    .matrix-cell .btn {
         max-width: 100%;
     }
 
-    /* Comparisons */
+    /* State groups */
+
+    .matrix-group {
+        display: grid;
+        gap: 10px;
+    }
+
+    .matrix-group h4 {
+        margin: 0 0 2px;
+    }
+
+    .matrix-group + .matrix-group {
+        padding-top: 18px;
+        border-top: 1px solid var(--aui-color-border);
+    }
+
+    .supporting-example {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--aui-color-border);
+    }
+
+    .supporting-example-label {
+        font-size: 12px;
+        font-weight: 500;
+        opacity: 0.7;
+    }
+
+    /* Customization comparisons */
 
     .comparison {
         display: grid;
@@ -532,41 +598,41 @@ const fontExamples = [
     }
 
     .comparison-item {
+        display: grid;
+        align-content: start;
+        justify-items: start;
+        gap: 14px;
         min-width: 0;
         padding: 16px;
         border: 1px solid var(--aui-color-border);
         border-radius: var(--aui-radius-surface);
     }
 
-    .comparison-item h4 {
-        margin: 0 0 14px;
+    .comparison-label {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.4;
+        opacity: 0.75;
     }
 
-    /* Layout */
-
     .block-example {
-        margin-top: 12px;
+        margin-top: 4px;
     }
 
     /* Composition */
 
     .scenario {
+        display: grid;
+        gap: 18px;
         padding: 20px;
         border: 1px solid var(--aui-color-border);
         border-radius: var(--aui-radius-surface);
     }
 
-    .scenario h4 {
-        margin: 0 0 8px;
-        font-size: 16px;
-        font-weight: 600;
-    }
-
     .scenario p {
-        margin: 0 0 18px;
+        margin: 0;
         font-size: 13px;
         line-height: 1.5;
-        opacity: 0.72;
     }
 
     .scenario-actions {
@@ -579,23 +645,23 @@ const fontExamples = [
 
     /* Responsive */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
         .themes {
             grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .review {
+            padding: 24px 12px;
         }
 
         .theme {
             padding: 20px;
         }
-    }
 
-    @media (max-width: 600px) {
-        .state-row {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .state-name {
-            grid-column: 1 / -1;
+        .review-section + .review-section {
+            padding-top: 24px;
         }
 
         .comparison {

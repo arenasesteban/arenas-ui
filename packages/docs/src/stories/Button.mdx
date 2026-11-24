@@ -1,0 +1,254 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Buttons trigger actions using native HTML and customizable CSS classes.
+
+## Class reference
+
+Use `btn` with compatible modifiers.
+
+<div className="aui-docs-reference">
+    <table className="aui-docs-class-table">
+        <thead>
+            <tr>
+                <th>Class</th>
+                <th>Category</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <code>btn</code>
+                </td>
+                <td>Base</td>
+                <td>Default primary button</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-secondary</code>
+                </td>
+                <td>Color</td>
+                <td>Secondary action</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-success</code>
+                </td>
+                <td>Color</td>
+                <td>Success action</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-warning</code>
+                </td>
+                <td>Color</td>
+                <td>Warning action</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-error</code>
+                </td>
+                <td>Color</td>
+                <td>Error action</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-outline</code>
+                </td>
+                <td>Style</td>
+                <td>Outlined appearance</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-ghost</code>
+                </td>
+                <td>Style</td>
+                <td>Minimal appearance</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-smooth</code>
+                </td>
+                <td>Style</td>
+                <td>Subtle surface</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-sm</code>
+                </td>
+                <td>Size</td>
+                <td>Small</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-md</code>
+                </td>
+                <td>Size</td>
+                <td>Medium</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-lg</code>
+                </td>
+                <td>Size</td>
+                <td>Large</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-pill</code>
+                </td>
+                <td>Shape</td>
+                <td>Fully rounded</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-square</code>
+                </td>
+                <td>Shape</td>
+                <td>Square</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-circle</code>
+                </td>
+                <td>Shape</td>
+                <td>Circular</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>btn-block</code>
+                </td>
+                <td>Layout</td>
+                <td>Full width</td>
+            </tr>
+            <tr>
+                <td>
+                    <code>loading loading-spinner</code>
+                </td>
+                <td>Loading</td>
+                <td>Visual indicator</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+The default `btn` is primary and medium-sized. Use one modifier per category and avoid conflicting combinations.
+
+## Basic usage
+
+Use `btn` for the default primary button.
+
+<Canvas of={ButtonStories.Basic} sourceState="shown" />
+
+## Sizes
+
+Choose between small, medium, and large.
+
+<Canvas of={ButtonStories.Sizes} sourceState="shown" />
+
+## Solid
+
+Default filled buttons with semantic colors.
+
+<Canvas of={ButtonStories.Solid} sourceState="shown" />
+
+## Outline
+
+Outlined buttons with semantic colors.
+
+<Canvas of={ButtonStories.Outline} sourceState="shown" />
+
+## Ghost
+
+Minimal buttons with semantic colors.
+
+<Canvas of={ButtonStories.Ghost} sourceState="shown" />
+
+## Smooth
+
+Subtle surface buttons with semantic colors.
+
+<Canvas of={ButtonStories.Smooth} sourceState="shown" />
+
+## Shapes
+
+Customize the button's geometry.
+
+<Canvas of={ButtonStories.Shapes} sourceState="shown" />
+
+Icon-only buttons require an accessible name, such as `aria-label`.
+
+## Block layout
+
+Use `btn-block` to fill the available width.
+
+<Canvas of={ButtonStories.Block} sourceState="shown" />
+
+## Disabled state
+
+Use the native `disabled` attribute to prevent activation.
+
+<Canvas of={ButtonStories.Disabled} sourceState="shown" />
+
+Unlike `disabled`, `aria-disabled="true"` does not automatically prevent activation.
+
+## Loading state
+
+Combine a visual indicator with the appropriate HTML state.
+
+<Canvas of={ButtonStories.Loading} sourceState="shown" />
+
+The `loading loading-spinner` classes provide the visual indicator. Consumers manage asynchronous state, functional disabling, and accessible status updates.
+
+`aria-busy="true"` communicates processing but does not disable the button.
+
+## Icons and links
+
+Compose buttons with icons, or style links for navigation.
+
+<Canvas of={ButtonStories.IconsAndLinks} sourceState="shown" />
+
+Decorative icons should use `aria-hidden="true"`. Icon-only buttons require an accessible name.
+
+Use `<button>` for actions and `<a>` for navigation. Styled links retain their native link semantics.
+
+## Light and dark themes
+
+Apply `data-theme="light"` or `data-theme="dark"`.
+
+<Canvas of={ButtonStories.Themes} sourceState="shown" />
+
+Explicit theme selection takes precedence over the system color preference.
+
+## Customization
+
+Override public tokens or use compatible Tailwind utilities.
+
+### Public CSS tokens
+
+Customize colors and geometry through public `--aui-*` variables.
+
+<Canvas of={ButtonStories.TokenCustomization} sourceState="shown" />
+
+Internal `--_aui-btn-*` variables are not part of the public customization API. Preserve accessible contrast when changing colors.
+
+### Tailwind utilities
+
+Override supported presentation properties using Tailwind CSS utilities.
+
+<Canvas of={ButtonStories.UtilityCustomization} sourceState="shown" />
+
+Supported utilities take precedence through the documented CSS cascade without routine use of `!important`.
+
+## Interactive playground
+
+Explore supported Button combinations using Controls.
+
+<Canvas of={ButtonStories.Interactive} sourceState="none" />
+
+<Controls of={ButtonStories.Interactive} />

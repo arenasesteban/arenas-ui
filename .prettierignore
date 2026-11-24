@@ -16,3 +16,7 @@ playwright-report/
 
 # Generated test CSS
 *.generated.css
+
+# Storybook
+*storybook.log
+storybook-static
