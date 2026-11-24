@@ -37,8 +37,17 @@ jobs:
             - name: Typecheck
               run: pnpm typecheck
 
-            - name: Build
+            - name: Build workspace and Storybook
               run: pnpm build
 
-            - name: Test Tailwind plugin
+            - name: Test Plugin
               run: pnpm test:plugin
+
+            - name: Install Chromium
+              run: pnpm --filter @arenasesteban/playground exec playwright install --with-deps chromium
+
+            - name: Test Browser
+              run: pnpm test:browser
+
+            - name: Smoke test Storybook
+              run: pnpm test:docs

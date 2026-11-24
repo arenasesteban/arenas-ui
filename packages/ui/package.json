@@ -19,9 +19,15 @@
     },
     "scripts": {
         "build": "tsc --project tsconfig.json",
-        "typecheck": "tsc --noEmit --project tsconfig.json"
+        "typecheck": "tsc --noEmit --project tsconfig.json",
+        "test:compile": "tailwindcss -i ./tests/fixtures/plugin.css -o ./tests/fixtures/plugin.generated.css",
+        "test:plugin": "node --test ./tests/contracts/plugin.test.ts",
+        "test:button": "node --test ./tests/contracts/button.test.ts",
+        "test:contracts": "pnpm build && pnpm test:compile && pnpm test:plugin && pnpm test:button"
     },
     "devDependencies": {
+        "@tailwindcss/cli": "4.3.5",
+        "@types/node": "^26.6.6",
         "tailwindcss": "^4.3.5"
     }
 }

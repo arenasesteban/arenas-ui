@@ -1,3 +1,0 @@
-@import 'tailwindcss' source(none);
-@plugin '@arenasesteban/ui';
-@source inline('aui-plugin-check font-bold');

@@ -11,9 +11,14 @@
         "build": "astro build",
         "preview": "astro preview",
         "check": "astro check",
-        "test:plugin": "tailwindcss -i ./tests/plugin.css -o ./tests/plugin.generated.css && node --test ./tests/plugin.test.mjs"
+        "typecheck": "tsc --noEmit --project tsconfig.json",
+        "test:compile": "pnpm --filter @arenasesteban/ui build && tailwindcss -i ./tests/fixtures/browser.css -o ./tests/fixtures/browser.generated.css",
+        "test:themes": "pnpm test:compile && playwright test themes.spec.ts",
+        "test:button": "pnpm test:compile && playwright test button.spec.ts",
+        "test:browser": "pnpm test:compile && playwright test"
     },
     "dependencies": {
+        "@tabler/icons-astro": "^3.52.0",
         "@tailwindcss/vite": "^4.3.5",
         "astro": "^7.4.13",
         "tailwindcss": "^4.3.5"
@@ -21,7 +26,10 @@
     "devDependencies": {
         "@arenasesteban/ui": "workspace:*",
         "@astrojs/check": "^0.9.12",
+        "@axe-core/playwright": "^4.14.0",
+        "@playwright/test": "^1.65.1",
         "@tailwindcss/cli": "^4.3.5",
+        "@types/node": "^26.6.6",
         "typescript": "^6.0.3"
     }
 }
